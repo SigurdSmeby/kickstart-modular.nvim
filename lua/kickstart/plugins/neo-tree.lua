@@ -18,6 +18,12 @@ return {
       window = {
         mappings = {
           ['\\'] = 'close_window',
+          ['m'] = {
+            'move',
+            config = {
+              show_path = 'relative', -- Options: "none", "relative", or "absolute"
+            },
+          },
         },
       },
     },

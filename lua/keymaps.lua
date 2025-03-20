@@ -1,6 +1,8 @@
 -- [[ Basic Keymaps ]]
 --  See `:help vim.keymap.set()`
-
+--
+-- Quick exit insertmode with "jj".
+vim.keymap.set('i', 'jj', '<Esc>', { desc = 'Exit insert mode with jj' })
 -- Clear highlights on search when pressing <Esc> in normal mode
 --  See `:help hlsearch`
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')

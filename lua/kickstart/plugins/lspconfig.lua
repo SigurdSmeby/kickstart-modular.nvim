@@ -221,6 +221,25 @@ return {
         -- But for many setups, the LSP (`ts_ls`) will work just fine
         -- ts_ls = {},
         --
+        -- HTML/CSS
+        html = {},
+        cssls = {},
+        emmet_ls = {},
+
+        -- JavaScript/TypeScript
+        ts_ls = {},
+        eslint = {},
+
+        -- Java
+        jdtls = {},
+
+        -- Python
+        pyright = {},
+        -- C++
+        clangd = {},
+
+        -- C#
+        omnisharp = {},
 
         lua_ls = {
           -- cmd = { ... },
@@ -254,6 +273,9 @@ return {
       local ensure_installed = vim.tbl_keys(servers or {})
       vim.list_extend(ensure_installed, {
         'stylua', -- Used to format Lua code
+        'ruff-lsp',
+        'prettier',
+        'prettierd',
       })
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 

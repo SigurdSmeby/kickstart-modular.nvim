@@ -238,7 +238,6 @@ return {
         -- C++
         clangd = {},
 
-        -- C#
         omnisharp = {},
 
         lua_ls = {

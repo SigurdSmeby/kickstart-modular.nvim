@@ -218,15 +218,15 @@ return {
         -- Some languages (like typescript) have entire language plugins that can be useful:
         --    https://github.com/pmizio/typescript-tools.nvim
         --
-        -- But for many setups, the LSP (`ts_ls`) will work just fine
+        -- But for many setups, the LSP (`ts_ls`) wll work just fne
         -- ts_ls = {},
         --
         -- HTML/CSS
-        html = {},
+        ['html-lsp'] = {},
         cssls = {},
         emmet_ls = {},
 
-        -- JavaScript/TypeScript
+        -- JavaScrpt/TypeScrpt
         ts_ls = {},
         eslint = {},
 
@@ -236,8 +236,6 @@ return {
         -- Python
         pyright = {},
         -- C++
-        clangd = {},
-
         omnisharp = {},
 
         lua_ls = {

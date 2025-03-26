@@ -227,7 +227,7 @@ return {
         emmet_ls = {},
 
         -- JavaScrpt/TypeScrpt
-        ts_ls = {},
+        -- ts_ls = {},
         eslint = {},
 
         -- Java
@@ -273,6 +273,7 @@ return {
         'ruff-lsp',
         'prettier',
         'prettierd',
+        'eslint',
       })
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 

@@ -49,7 +49,8 @@ return {
       --  - [c - Jump to [P]revious [C]omment
       --  - ]i - Jump to [N]ext [I]ndent change
       --  - [b - Jump to [P]revious [B]racket
-      require('mini.bracketed').setup()
+
+      -- require('mini.bracketed').setup()
 
       -- Add animation onto the neovim editor
       local animate = require 'mini.animate'

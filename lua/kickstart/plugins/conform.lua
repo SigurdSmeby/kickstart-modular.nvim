@@ -33,29 +33,26 @@ return {
       end,
       formatters_by_ft = {
         lua = { 'stylua' },
-        -- Conform can also run multiple formatters sequentially
-        -- python = { "isort", "black" },
-        --
-        -- You can use 'stop_after_first' to run the first available formatter from the list
-        -- javascript = { "prettierd", "prettier", stop_after_first = true },
-        -- Web development
-        javascript = { 'prettierd', 'prettier', stop_after_first = true },
-        typescript = { 'prettierd', 'prettier', stop_after_first = true },
-        javascriptreact = { 'prettierd', 'prettier', stop_after_first = true },
-        typescriptreact = { 'prettierd', 'prettier', stop_after_first = true },
-        css = { 'prettierd', 'prettier', stop_after_first = true },
-        html = { 'prettierd', 'prettier', stop_after_first = true },
-        json = { 'prettierd', 'prettier', stop_after_first = true },
-        yaml = { 'prettierd', 'prettier', stop_after_first = true },
-        markdown = { 'prettierd', 'prettier', stop_after_first = true },
+        -- Try prettier first, then prettierd (reversed order from original)
+        javascript = { 'prettier', 'prettierd', stop_after_first = true },
+        typescript = { 'prettier', 'prettierd', stop_after_first = true },
+        javascriptreact = { 'prettier', 'prettierd', stop_after_first = true },
+        typescriptreact = { 'prettier', 'prettierd', stop_after_first = true },
+        css = { 'prettier', 'prettierd', stop_after_first = true },
+        html = { 'prettier', 'prettierd', stop_after_first = true },
+        json = { 'prettier', 'prettierd', stop_after_first = true },
+        yaml = { 'prettier', 'prettierd', stop_after_first = true },
+        markdown = { 'prettier', 'prettierd', stop_after_first = true },
       },
-      -- Optional formatter configurations
+      -- Formatter configurations with explicit config path
       formatters = {
         prettier = {
-          -- Add any custom prettier options here if needed
+          -- Explicitly point to your .prettierrc.json in home directory
+          prepend_args = { '--config', vim.fn.expand '~/.prettierrc.json' },
         },
         prettierd = {
-          -- Add any custom prettierd options here if needed
+          -- Same configuration for prettierd
+          prepend_args = { '--config', vim.fn.expand '~/.prettierrc.json' },
         },
       },
     },

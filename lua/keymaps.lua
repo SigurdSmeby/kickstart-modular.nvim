@@ -4,6 +4,38 @@
 -- Quick exit insertmode with "jj".
 vim.keymap.set('i', 'jj', '<Esc>', { desc = 'Exit insert mode with jj' })
 
+-- create a console.log() mapping for javascript and typescript files
+local console_group = vim.api.nvim_create_augroup('ConsoleCommands', { clear = true })
+
+-- Create global mappings that show error messages when used in non-JS/TS files
+vim.keymap.set('n', '<leader>cl', function()
+  vim.notify('Not a JavaScript/TypeScript file', vim.log.levels.WARN)
+end, { noremap = true })
+
+vim.keymap.set('n', '<leader>ci', function()
+  vim.notify('Not a JavaScript/TypeScript file', vim.log.levels.WARN)
+end, { noremap = true })
+
+vim.keymap.set('n', '<leader>ce', function()
+  vim.notify('Not a JavaScript/TypeScript file', vim.log.levels.WARN)
+end, { noremap = true })
+
+vim.keymap.set('n', '<leader>cw', function()
+  vim.notify('Not a JavaScript/TypeScript file', vim.log.levels.WARN)
+end, { noremap = true })
+
+-- Set up the functional mappings only for JS/TS files (these will override the error mappings)
+vim.api.nvim_create_autocmd('FileType', {
+  group = console_group,
+  pattern = { 'javascript', 'typescript', 'javascriptreact', 'typescriptreact' },
+  callback = function()
+    vim.keymap.set('n', '<leader>cl', '"lyiwo<ESC>iconsole.log(\'<ESC>"lpa :\', <ESC>"lpa);<ESC>', { buffer = true, noremap = true })
+    vim.keymap.set('n', '<leader>ci', '"lyiwo<ESC>iconsole.info(\'<ESC>"lpa :\', <ESC>"lpa);<ESC>', { buffer = true, noremap = true })
+    vim.keymap.set('n', '<leader>ce', '"lyiwo<ESC>iconsole.error(\'<ESC>"lpa :\', <ESC>"lpa);<ESC>', { buffer = true, noremap = true })
+    vim.keymap.set('n', '<leader>cw', '"lyiwo<ESC>iconsole.warn(\'<ESC>"lpa :\', <ESC>"lpa);<ESC>', { buffer = true, noremap = true })
+  end,
+})
+
 -- Clear highlights on search when pressing <Esc> in normal mode
 --  See `:help hlsearch`
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')

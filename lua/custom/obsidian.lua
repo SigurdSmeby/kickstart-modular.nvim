@@ -42,6 +42,7 @@ M.DEFAULT_CONFIG = {
     insert_link = 'l', -- Insert link <Leader>ol
     follow_link = 'f', -- Follow link <Leader>of
     update_highlight = 'u', -- Update highlighting <Leader>ou
+    goto_inbox = 'v', -- Go to inbox dir <Leader>ov
   },
 }
 
@@ -296,6 +297,12 @@ function M.follow_link()
   print 'No link found under cursor'
 end
 
+-- Go to obsidian inbox directory
+function M.goto_inbox()
+  -- Create Neovim command to open the directory
+  vim.cmd('Ex ' .. vim.fn.fnameescape(M.config.default_note_dir))
+end
+
 --[[ 
 =====================================================================
 HIGHLIGHTING FUNCTIONS
@@ -494,6 +501,11 @@ function M.setup(user_config)
       noremap = true,
       silent = true,
     })
+    vim.keymap.set('n', leader_prefix .. M.config.mappings.goto_inbox, M.goto_inbox, {
+      desc = 'Go to Obsidian inbox directory',
+      noremap = true,
+      silent = true,
+    })
   else
     -- Fallback for older Neovim versions
     vim.api.nvim_set_keymap(
@@ -529,6 +541,12 @@ function M.setup(user_config)
       leader_prefix .. M.config.mappings.update_highlight,
       ':lua require("obsidian").update_link_highlighting()<CR>',
       { noremap = true, silent = true, desc = 'Update link highlighting' }
+    )
+    vim.api.nvim_set_keymap(
+      'n',
+      leader_prefix .. M.config.mappings.goto_inbox,
+      ':lua require("obsidian").goto_inbox()<CR>',
+      { noremap = true, silent = true, desc = 'Go to Obsidian inbox directory' }
     )
   end
 

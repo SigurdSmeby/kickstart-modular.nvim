@@ -209,7 +209,24 @@ return {
       --  - settings (table): Override the default settings passed when initializing the server.
       --        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
       local servers = {
-        -- clangd = {},
+        clangd = {
+          capabilities = {
+            offsetEncoding = 'utf-8', -- This fixes the offset_encoding warning
+          },
+          cmd = {
+            'clangd',
+            '--background-index',
+            '--clang-tidy',
+            '--header-insertion=iwyu',
+            '--query-driver=C:\\ProgramData\\mingw64\\mingw64\\bin\\g++.exe', -- Correct flag and path
+          },
+          filetypes = { 'c', 'cpp', 'objc', 'objcpp' },
+          -- you need to add this to your "cd ~" for clangd to work
+          -- and name it .clangd
+          -- CompileFlags:
+          -- Add: [-std=c++17, -Wall]
+          -- Compiler: g++
+        },
         -- gopls = {},
         -- pyright = {},
         -- rust_analyzer = {},
@@ -228,7 +245,7 @@ return {
 
         -- JavaScrpt/TypeScrpt
         -- ts_ls = {},
-        eslint = {},
+        -- eslint = {},
 
         -- Java
         jdtls = {},
@@ -273,7 +290,7 @@ return {
         'ruff-lsp',
         'prettier',
         'prettierd',
-        'eslint',
+        -- 'eslint',
       })
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 

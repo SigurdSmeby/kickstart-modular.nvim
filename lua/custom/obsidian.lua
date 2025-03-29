@@ -579,9 +579,6 @@ function M.setup(user_config)
     callback = function()
       vim.opt_local.wrap = true
       vim.opt_local.linebreak = true
-
-      -- Add special mapping for clicking on links with the mouse
-      vim.api.nvim_buf_set_keymap(0, 'n', '<LeftMouse>', '<LeftMouse>:lua require("obsidian").follow_link()<CR>', { noremap = true, silent = true })
     end,
     group = 'ObsidianMarkdown',
   })
